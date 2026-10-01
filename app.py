@@ -4,13 +4,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def test():
-    ip = request.remote_addr
-    print("Visitor IP:", ip)
+    print("remote_addr:", request.remote_addr)
+    print("X-Forwarded-For:", request.headers.get("X-Forwarded-For"))
 
-    return f"""
+    return """
     <h2>Networking Experiment</h2>
-    <p>This page recorded the IP address associated with your connection:</p>
-    <strong>{ip}</strong>
+    <p>Request received.</p>
     """
 
 if __name__ == "__main__":
